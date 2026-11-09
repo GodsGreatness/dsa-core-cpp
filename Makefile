@@ -4,7 +4,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -O2 -Iinclude
 BIN_DIR = bin
 TEST_DIR = tests
 
-TESTS = test_vector test_linked_list test_stack test_queue
+TESTS = test_vector test_linked_list test_stack test_queue test_bst test_avl
 TEST_BINS = $(addprefix $(BIN_DIR)/, $(TESTS))
 
 all: $(TEST_BINS)

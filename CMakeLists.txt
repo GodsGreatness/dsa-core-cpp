@@ -12,8 +12,14 @@ add_executable(test_linked_list tests/test_linked_list.cpp)
 add_executable(test_stack tests/test_stack.cpp)
 add_executable(test_queue tests/test_queue.cpp)
 
+# Phase 2: Tree Tests
+add_executable(test_bst tests/test_bst.cpp)
+add_executable(test_avl tests/test_avl.cpp)
+
 enable_testing()
 add_test(NAME TestVector COMMAND test_vector)
 add_test(NAME TestLinkedList COMMAND test_linked_list)
 add_test(NAME TestStack COMMAND test_stack)
 add_test(NAME TestQueue COMMAND test_queue)
+add_test(NAME TestBST COMMAND test_bst)
+add_test(NAME TestAVL COMMAND test_avl)

@@ -1,0 +1,72 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  linux-build:
+    name: Linux (${{ matrix.cxx }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cxx: [g++, clang++]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
+
+    - name: Build Targets
+      run: cmake --build build
+
+    - name: Run Unit Tests
+      run: ctest --test-dir build --output-on-failure
+
+  linux-sanitizers:
+    name: Linux (Sanitizers ASan+UBSan)
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Configure CMake with Sanitizers
+      run: |
+        cmake -B build \
+          -DCMAKE_BUILD_TYPE=Debug \
+          -DCMAKE_CXX_COMPILER=g++ \
+          -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g"
+
+    - name: Build Targets
+      run: cmake --build build
+
+    - name: Run Unit Tests with Sanitizers Active
+      env:
+        ASAN_OPTIONS: "detect_leaks=1:abort_on_error=1"
+        UBSAN_OPTIONS: "halt_on_error=1"
+      run: ctest --test-dir build --output-on-failure
+
+  windows-build:
+    name: Windows (MSVC)
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up MSVC Developer Environment
+      uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Configure CMake
+      run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build Targets
+      run: cmake --build build
+
+    - name: Run Unit Tests
+      run: ctest --test-dir build --output-on-failure

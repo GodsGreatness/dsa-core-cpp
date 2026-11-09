@@ -6,24 +6,37 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-# Phase 1: Linear Container Tests
+# CLI Demo Target
+add_executable(dsa_demo src/main.cpp)
+
+# Linear Container Tests
 add_executable(test_vector tests/test_vector.cpp)
 add_executable(test_linked_list tests/test_linked_list.cpp)
 add_executable(test_stack tests/test_stack.cpp)
 add_executable(test_queue tests/test_queue.cpp)
 
-# Phase 2: Tree Tests
+# Tree Tests
 add_executable(test_bst tests/test_bst.cpp)
 add_executable(test_avl tests/test_avl.cpp)
 
-# Phase 3: Heap Tests
+# Heap Tests
 add_executable(test_heap tests/test_heap.cpp)
 
-# Phase 4: Graph Tests
+# Graph Tests
 add_executable(test_graph tests/test_graph.cpp)
 
-# Phase 5: Sorting Tests
+# Sorting Tests
 add_executable(test_sorting tests/test_sorting.cpp)
+
+# Benchmark Targets
+add_executable(benchmark_linear benchmarks/benchmark_linear.cpp)
+add_executable(benchmark_trees benchmarks/benchmark_trees.cpp)
+add_executable(benchmark_sorting benchmarks/benchmark_sorting.cpp)
+
+# Example Targets
+add_executable(example_vector examples/vector_example.cpp)
+add_executable(example_avl examples/avl_example.cpp)
+add_executable(example_graph examples/graph_example.cpp)
 
 enable_testing()
 add_test(NAME TestVector COMMAND test_vector)

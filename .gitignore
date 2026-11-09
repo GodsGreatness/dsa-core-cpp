@@ -1,0 +1,28 @@
+# Build and Binary Outputs
+bin/
+build/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# IDE & Editor Specifics
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test & Benchmark Artifacts
+*.log
+*.tmp
+Testing/
+*.gcda
+*.gcno
+*.gcov
+compile_commands.json

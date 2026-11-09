@@ -1,0 +1,25 @@
+---
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  misc-*,
+  modernize-*,
+  performance-*,
+  readability-*
+
+WarningsAsErrors: ''
+
+HeaderFilterRegex: 'include/.*'
+
+CheckOptions:
+  cppcoreguidelines-special-member-functions.AllowMissingMoveOperations: false
+  modernize-use-trailing-return-type.MinTypeSpecifierCount: 0
+  readability-identifier-naming.NamespaceCase: lower_case
+  readability-identifier-naming.ClassCase: CamelCase
+  readability-identifier-naming.StructCase: CamelCase
+  readability-identifier-naming.FunctionCase: camelBack
+  readability-identifier-naming.MethodCase: camelBack
+  readability-identifier-naming.VariableCase: camelBack

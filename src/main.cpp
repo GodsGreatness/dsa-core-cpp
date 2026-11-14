@@ -66,25 +66,41 @@ void runSortingDemo() {
     std::cout << "\n";
 }
 
-void printMenu() {
-    std::cout << "\n==============================\n";
-    std::cout << "      DSA Core C++17 CLI      \n";
-    std::cout << "==============================\n";
-    std::cout << "  1. Vector Demo\n";
-    std::cout << "  2. AVL Tree Invariant Demo\n";
-    std::cout << "  3. Graph & Dijkstra Demo\n";
-    std::cout << "  4. Sorting Algorithms Demo\n";
-    std::cout << "  0. Exit\n";
-    std::cout << "Enter choice: ";
+void printHelp() {
+    std::cout << "DSA Core C++17 Library & Demonstration CLI\n\n";
+    std::cout << "Usage: ./dsa_demo [options]\n\n";
+    std::cout << "Options:\n";
+    std::cout << "  --all, -a        Run all module demonstrations (default)\n";
+    std::cout << "  --vector         Run Vector demonstration\n";
+    std::cout << "  --avl            Run AVL Tree self-balancing demonstration\n";
+    std::cout << "  --graph          Run Graph & Dijkstra demonstration\n";
+    std::cout << "  --sort           Run Sorting suite demonstration\n";
+    std::cout << "  --version, -v    Display version information\n";
+    std::cout << "  --help, -h       Display this help message\n\n";
 }
 
 int main(int argc, char* argv[]) {
-    if (argc > 1 && (std::string(argv[1]) == "--demo" || std::string(argv[1]) == "-d")) {
-        runVectorDemo();
-        runAVLDemo();
-        runGraphDemo();
-        runSortingDemo();
-        return 0;
+    if (argc > 1) {
+        std::string arg = argv[1];
+        if (arg == "--version" || arg == "-v") {
+            std::cout << "DSA Core C++17 v1.0.0\n";
+            return 0;
+        } else if (arg == "--help" || arg == "-h") {
+            printHelp();
+            return 0;
+        } else if (arg == "--vector") {
+            runVectorDemo();
+            return 0;
+        } else if (arg == "--avl") {
+            runAVLDemo();
+            return 0;
+        } else if (arg == "--graph") {
+            runGraphDemo();
+            return 0;
+        } else if (arg == "--sort") {
+            runSortingDemo();
+            return 0;
+        }
     }
 
     std::cout << "DSA Core C++17 Library & Demonstration CLI\n";

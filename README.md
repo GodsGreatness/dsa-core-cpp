@@ -145,6 +145,17 @@ Every rotation preserves memory safety through `std::unique_ptr<Node>` ownership
 * C++17 compliant compiler (`g++`, `clang++`, or `MSVC`)
 * GNU Make or CMake (>= 3.15)
 
+### One-Click Automated Runners:
+```bash
+# Run all 9 unit test suites:
+powershell scripts/run_tests.ps1        # Windows
+bash scripts/run_tests.sh               # Linux / macOS
+
+# Run empirical scaling benchmarks:
+powershell scripts/run_benchmarks.ps1   # Windows
+bash scripts/run_benchmarks.sh          # Linux / macOS
+```
+
 ### Using Make:
 ```bash
 # Build demo, unit tests, benchmarks, and examples
@@ -212,6 +223,11 @@ dsa-core-cpp/
 │   ├── vector_example.cpp
 │   ├── avl_example.cpp
 │   └── graph_example.cpp
+├── scripts/
+│   ├── run_tests.ps1            # One-click Windows PowerShell test suite runner
+│   ├── run_tests.sh             # One-click Linux/macOS test suite runner
+│   ├── run_benchmarks.ps1       # One-click Windows PowerShell benchmark runner
+│   └── run_benchmarks.sh        # One-click Linux/macOS benchmark runner
 ├── src/
 │   └── main.cpp                 # Library demonstration CLI
 ├── .clang-format                # Google C++ style formatting
